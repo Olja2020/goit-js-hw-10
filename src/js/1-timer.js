@@ -37,6 +37,7 @@ const options = {
     
     },
   };
+  
   flatpickr("#datetime-picker", options);
   
   function convertMs(ms) {
