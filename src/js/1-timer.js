@@ -13,9 +13,6 @@ const buttonStart = document.querySelector("button");
 
 let userSelectedDate; 
 
-flatpickr("#datetime-picker", options);
-
-
 
 const options = {
  
@@ -23,19 +20,6 @@ const options = {
     time_24hr: true,
     defaultDate: new Date(),
     minuteIncrement: 1,
-
-  //   onClose(selectedDates) {
-  //     const selectedDate = selectedDates[0];
-  //     if (selectedDate < new Date()) {
-  //       window.alert("Будь ласка, оберіть дату у майбутньому");
-  //       userSelectedDate = null;
-  //       document.getElementById('startBtn').disabled = true;
-  //     } else {
-  //       userSelectedDate = selectedDate;
-  //       document.getElementById('startBtn').disabled = false;
-  //     }
-  //   },
-  // };
 
     onClose(selectedDates) {
       
@@ -53,10 +37,8 @@ const options = {
     
     },
   };
-
-
-
   flatpickr("#datetime-picker", options);
+  
   function convertMs(ms) {
     // Number of milliseconds per unit of time
     const second = 1000;
