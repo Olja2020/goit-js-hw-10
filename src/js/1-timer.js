@@ -23,7 +23,7 @@ const options = {
 
     onClose(selectedDates) {
       
-      if(selectedDate < new Date()){
+      if(selectedDates[0] < new Date()){
         userSelectedDate = null;
       console.info("Please choose a date in the future");
       window.alert("Please choose a date in the future");
