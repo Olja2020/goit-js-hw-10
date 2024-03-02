@@ -10,7 +10,7 @@ import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 
 const buttonStart = document.querySelector("button");
-
+const datetimePicker = document.getElementById('datetime-picker');
 let userSelectedDate; 
 
 
@@ -24,7 +24,8 @@ const options = {
     onClose(selectedDates) {
       
       if(selectedDates[0] < new Date()){
-        userSelectedDate = null;
+        
+      userSelectedDate = null;
       console.info("Please choose a date in the future");
       window.alert("Please choose a date in the future");
       buttonStart.disabled = true;
@@ -34,7 +35,7 @@ const options = {
         userSelectedDate = selectedDates[0];
       }
       console.log(selectedDates[0]);
-    
+     
     },
   };
   
@@ -60,13 +61,53 @@ const options = {
   }
 
   
+   function addLeadingZero(value) {
+    return value < 10 ? String(value).padStart(2, "0") : value;
+   }     // яка використовує метод рядка padStart() і перед відмальовуванням інтерфейсу форматує значення.
+   
+
+  
 
 
-  // function addLeadingZero(value) {
+flatpickr("#datetime-picker", options);
 
-  // }     // яка використовує метод рядка padStart() і перед відмальовуванням інтерфейсу форматує значення.
+buttonStart.addEventListener('click', function() {
+    if (userSelectedDate) {
+        buttonStart.disabled = true;
+        datetimePicker.disabled = true;
+        startTimer(userSelectedDate);
+    }
+});
+
+function startTimer(endDate) {
+        const timerInterval = setInterval(function() {
+        const currentTime = new Date().getTime();
+        const difference = endDate.getTime() - currentTime;
+
+        if (difference <= 0) {
+            clearInterval(timerInterval);
+            updateTimerDisplay(0, 0, 0, 0);
+            buttonStart.disabled = false;
+            datetimePicker.disabled = false;
+            return;
+        }
+
+        const { days, hours, minutes, seconds } = convertMs(difference);
+        updateTimerDisplay(days, hours, minutes, seconds);
+    }, 1000);
+}
 
 
-  console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
+function updateTimerDisplay(days, hours, minutes, seconds) {
+    document.querySelector('[data-days]').textContent = addLeadingZero(days);
+    document.querySelector('[data-hours]').textContent = addLeadingZero(hours);
+    document.querySelector('[data-minutes]').textContent = addLeadingZero(minutes);
+    document.querySelector('[data-seconds]').textContent = addLeadingZero(seconds);
+}
+
+
+
+
+console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
   console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
   console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20}
