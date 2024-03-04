@@ -66,10 +66,6 @@ const options = {
    }     // яка використовує метод рядка padStart() і перед відмальовуванням інтерфейсу форматує значення.
    
 
-  
-
-
-flatpickr("#datetime-picker", options);
 
 buttonStart.addEventListener('click', function() {
     if (userSelectedDate) {
