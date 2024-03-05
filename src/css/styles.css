@@ -46,3 +46,22 @@ display: flex;
 flex-direction: column;
 align-items: center;
 }
+button {
+  width: 203px;
+}
+fieldset {
+  width: 175px;
+}
+.delay {
+  width: 195px;
+  display: block;
+  
+}
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+button {
+margin-top: 5px;
+}
